@@ -17,7 +17,7 @@ export default function Hero() {
         tl.fromTo(
           part1.current,
           { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay:0.6 }
+          { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", }
         )
         .fromTo(
           part2.current,
@@ -29,7 +29,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <div className="bg-slate-200 py-16 md:py-64 h-85vh overflow-hidden relative flex items-center justify-center">
+        <div className="bg-slate-200 py-16 md:py-64 h-screen overflow-hidden relative flex items-center justify-center">
             <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function Hero() {
                     transition={{ duration: 100, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 />
             </div>
-            <div className="bg-gradient-to-b from-blue-200 to-white absolute bottom-0 left-0 w-full h-12"></div>
+            <div className="bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 backdrop-saturate-100 backdrop-contrast-100 absolute bottom-0 left-0 w-full h-12"></div>
         </div>
     )
 }

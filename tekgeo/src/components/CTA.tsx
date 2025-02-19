@@ -23,7 +23,7 @@ export default function CTA() {
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Join thousands of satisfied customers who have transformed their business with StreamLine.
+          Join thousands of satisfied customers who have transformed their business & organaization with Tekgeo.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
