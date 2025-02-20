@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import path from "path";
 
 export default function TekGeoLogo() {
   const logoRef = useRef<SVGPathElement | null>(null);
@@ -68,7 +69,7 @@ export default function TekGeoLogo() {
           opacity="0"
         />
       </svg>
-      <span ref={textRef} className="text-xl font-bold text-gray-900 tracking-wide">
+      <span ref={textRef} className="text-xl font-bold text-white tracking-wide">
         TEKGEO
       </span>
     </div>

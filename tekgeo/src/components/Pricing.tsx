@@ -7,11 +7,13 @@ const plans = [
   {
     name: "Basic TEKGEO",
     price: "$29",
+    bg:"bg-gradient-to-t from-green-200  to-white",
     features: ["5 geofences", "Real-time tracking", "Basic analytics", "Email notifications"],
   },
   {
     name: "Advanced TEKGEO",
     price: "$99",
+    bg:"bg-gradient-to-b from-blue-300  to-white",
     features: [
       "Unlimited geofences",
       "Real-time tracking & alerts",
@@ -23,6 +25,7 @@ const plans = [
   {
     name: "Enterprise TEKGEO",
     price: "Custom",
+    bg:"bg-gradient-to-t from-green-200  to-white",
     features: [
       "Unlimited everything",
       "Dedicated account manager",
@@ -35,11 +38,11 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <div id="pricing" className="bg-background py-16 sm:py-24 relative overflow-hidden">
+    <div id="pricing" className="py-16 sm:py-24 relative overflow-hidden">
       {/* Add background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-primary-light rounded-full"
+          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[#ebf0f6] via-[#98ccd3] to-[#364e68] rounded-full"
           animate={{
             scale: [1, 1.1, 1],
             rotate: [0, 45, 0],
@@ -51,7 +54,7 @@ export default function Pricing() {
           }}
         />
         <motion.div
-          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-secondary-light rounded-full"
+          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#25316d] via-[#5f6f94] to-[#97d2ec] rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, -45, 0],
@@ -72,14 +75,14 @@ export default function Pricing() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl">Flexible Pricing for Geofencing Solutions</h2>
-          <p className="mt-4 text-xl text-muted-foreground">Choose the plan that fits your geofencing needs</p>
+          <h2 className="text-3xl mt-6 font-bold text-foreground sm:text-4xl">Flexible Pricing for Geofencing Solutions</h2>
+          {/* <p className="mt-4 text-xl text-muted-foreground">Choose the plan that fits your geofencing needs</p> */}
         </motion.div>
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              className="border border-border rounded-lg shadow-sm divide-y divide-border"
+              className={`border border-border rounded-lg shadow-sm divide-y divide-border ${plan.bg}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -89,13 +92,13 @@ export default function Pricing() {
                 borderImage: "linear-gradient(to right, #00b4d8, #8a2be2) 1", // Blue and Violet gradient border
               }}
             >
-              <div className="p-6">
+              <div className="p-4 ">
                 <h3 className="text-lg font-medium text-foreground">{plan.name}</h3>
-                <p className="mt-4 text-3xl font-extrabold text-foreground">{plan.price}</p>
+                <p className="mt-4 text-5xl font-extrabold text-foreground">{plan.price}</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   {plan.name === "Enterprise Geofencing" ? "Contact us for pricing" : "per month"}
                 </p>
-                <Button className="mt-6 w-full">{plan.name === "Enterprise Geofencing" ? "Contact sales" : "Get started"}</Button>
+               
               </div>
               <div className="px-6 pt-6 pb-8">
                 <h4 className="text-sm font-medium text-foreground tracking-wide uppercase">What's included</h4>
@@ -109,6 +112,7 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <Button className="mt-6 w-32">{plan.name === "Enterprise Geofencing" ? "Contact sales" : "Get started"}</Button>
               </div>
             </motion.div>
           ))}

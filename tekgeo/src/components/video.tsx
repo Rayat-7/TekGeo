@@ -35,7 +35,7 @@ export default function VideoShowcase({
   const isValidVideo = videoId && videoId.trim().length > 5; // Basic check
 
   return (
-    <div className="w-full">
+    <div id='blog' className="w-full bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#eef5ff] via-[#b4d4ff] to-[#86b6f6]">
       {/* Title Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -44,8 +44,8 @@ export default function VideoShowcase({
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-blue-900 to-blue-400 bg-clip-text text-transparent ">{title}</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <h2 className="text-3xl p-3 md:text-4xl font-bold mb-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-blue-900 to-blue-400 bg-clip-text text-transparent ">{title}</h2>
+        <p className="text-lg text-muted-foreground max-w-2xl  mx-auto">
           {description}
         </p>
       </motion.div>
@@ -112,7 +112,7 @@ export default function VideoShowcase({
         </div>
 
         {/* Feature List */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 shadow-[0px_0px_31px_0px_rgba(169,_20,_136,_0.6)] mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12  shadow-[0px_0px_31px_0px_rgba(57,_72,_164,_0.9)] mb-16">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}

@@ -44,7 +44,7 @@ export default function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2, duration: 0.8 }}
                         >
-                            <h1 className="flex text-4xl justify-center underline bg-gradient-to-l from-sky-800 via-gray-950 to-black bg-clip-text text-transparent font-light mb-4">
+                            <h1 className="flex text-5xl justify-center underline bg-gradient-to-l from-sky-800 via-gray-950 to-black bg-clip-text text-transparent font-light mb-4">
                                 TEKGEO
                             </h1>
                         </motion.span>
@@ -64,14 +64,14 @@ export default function Hero() {
                                 
                             </div>
                         </motion.span>
-                        <motion.span
+                        {/* <motion.span
                             className="text-lg sm:text-2xl font-semibold text-foreground"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.8 }}
                         >
                             "From workforce tracking to asset management – one solution, endless possibilities."
-                        </motion.span>
+                        </motion.span> */}
                     </h1>
                     <motion.p
                         className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
@@ -100,7 +100,7 @@ export default function Hero() {
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
-                    className="absolute -top-1/2 -left-1/2 w-full h-full rounded-full bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#6366f1] via-[#a5b4fc] to-[#e0e7ff]"
+                    className="absolute -top-1/2 -left-1/2 w-full h-full rounded-full bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#5a5cea] via-[#a5b4fc] to-[#e0e7ff]"
                     animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 0] }}
                     transition={{ duration: 100, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 />

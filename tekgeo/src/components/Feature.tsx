@@ -1,8 +1,9 @@
 "use client"
-import { MapPin, Bell, Shield, Truck, Ruler } from "lucide-react";
+import { MapPin, Bell, Shield, Truck, Ruler, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 const features = [
   {
@@ -48,8 +49,8 @@ export default function FeaturesSolutions() {
   const [openDialog, setOpenDialog] = useState<string|null>(null);
   
   return (
-    <div className="py-24 bg-background relative overflow-hidden" id="features">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div  className="py-24 bg-background relative overflow-hidden" id="features">
+      <div id="feature" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="lg:text-center">
           <motion.h2
             className="text-base bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-blue-900 to-blue-400 bg-clip-text text-transparent font-semibold tracking-wide uppercase"
@@ -88,6 +89,9 @@ export default function FeaturesSolutions() {
                   </div>
                   <p className="mt-8 text-lg leading-6 font-medium text-foreground">{feature.name}</p>
                   <p className="mt-2 text-base text-muted-foreground">{feature.description}</p>
+                  <Button className="relative bg-transparent hover:bg-transparent  w-full  " variant="ghost">
+                    <ArrowRight className="absolute right-0"></ArrowRight>
+                  </Button>
                 </motion.div>
               </DialogTrigger>
 

@@ -7,49 +7,50 @@ import { MapPin, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import * as React from 'react';
 import TekGeoLogo from './ui/tekgeoLogo';
+import { useEffect, useState } from 'react';
 
 const features = [
   {
     title: 'Geofence-based Attendance',
-    href: '/features/attendance',
+    href: '/#feature',
     description: 'Automated attendance tracking with precise geofencing',
   },
   {
     title: 'Real-time Tracking & Alerts',
-    href: '/features/tracking',
+    href: '/#feature',
     description: 'Monitor location and receive instant notifications',
   },
   {
     title: 'Access Control & Security',
-    href: '/features/security',
+    href: '/#feature',
     description: 'Secure access management and monitoring',
   },
   {
     title: 'Fleet & Asset Management',
-    href: '/features/fleet',
+    href: '/#feature',
     description: 'Comprehensive fleet tracking and optimization',
   },
 ];
 
 const solutions = [
   {
-    title: 'For Businesses',
-    href: '/solutions/business',
+    title: 'Businesses',
+    href: '/#feature',
     description: 'Employee attendance and security management',
   },
   {
-    title: 'For Logistics',
-    href: '/solutions/logistics',
+    title: 'Logistics',
+    href: '/#feature',
     description: 'Fleet tracking and route optimization',
   },
   {
-    title: 'For Education',
-    href: '/solutions/education',
+    title: 'Education',
+    href: '/#feature',
     description: 'Student tracking and school bus monitoring',
   },
   {
-    title: 'For Healthcare',
-    href: '/solutions/healthcare',
+    title: 'Healthcare',
+    href: '/#feature',
     description: 'Patient tracking and quarantine management',
   },
 ];
@@ -57,27 +58,44 @@ const solutions = [
 const resources = [
   {
     title: 'Blog',
-    href: '/blog',
+    href: '/#blog',
     description: 'Latest updates and industry insights',
   },
   {
     title: 'Case Studies',
-    href: '/case-studies',
+    href: '/#blog',
     description: 'Success stories from our clients',
   },
   {
     title: 'Documentation',
-    href: '/docs',
+    href: '/#blog',
     description: 'Detailed guides and API documentation',
   },
 ];
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
+  const [isScrolled ,setIsScrolled]=useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-40 mt-3 mx-auto max-w-[1728px] px-4 py-2">
-      <nav className="flex items-center justify-between rounded-full shadow-lg px-6 py-4 bg-gradient-to-l from-blue-400 via-white to-blue-200">
+    <header className={`fixed left-0 right-0  z-40 mx-auto max-w-[1728px] px-4 py-2 ${
+      isScrolled ? 'top-0 ' : 'top-3'
+    }`}>
+      <nav className="flex items-center justify-between rounded-full shadow-lg px-6 py-4 bg-gradient-to-l from-blue-400 via-blue-100 to-blue-300">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <TekGeoLogo />
@@ -88,100 +106,98 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList className="space-x-8">
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground bg-transparent">
+                <NavigationMenuTrigger className="text-base font-medium text-muted-foreground hover:text-foreground bg-transparent">
                   Features
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                  <ul className="flex flex-col w-[250px] gap-2 p-2 md:w-[250px] md:grid-cols-2">
                     {features.map((feature) => (
                       <ListItem
                         key={feature.title}
                         title={feature.title}
                         href={feature.href}
                       >
-                        {feature.description}
+                        
                       </ListItem>
                     ))}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              </NavigationMenuList>
+              </NavigationMenu>
 
+
+
+
+              <NavigationMenu>
+              <NavigationMenuList className="space-x-8">
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground bg-transparent">
                   Solutions
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                  <ul className="flex-col w-[200px] gap-3 p-4 md:w-[200px] md:grid-cols-2">
                     {solutions.map((solution) => (
                       <ListItem
                         key={solution.title}
                         title={solution.title}
                         href={solution.href}
                       >
-                        {solution.description}
                       </ListItem>
                     ))}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              </NavigationMenuList>
+              </NavigationMenu>
 
-              <NavigationMenuItem>
+        <NavigationMenu >
+          <NavigationMenuList>
+              <NavigationMenuItem className=''>
                 <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground bg-transparent">
                   Resources
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4">
+                  <ul className="grid w-[200px] gap-1 p-3 ">
                     {resources.map((resource) => (
                       <ListItem
+                      className='bg-blue-400 hover:bg-red-700'
                         key={resource.title}
                         title={resource.title}
                         href={resource.href}
                       >
-                        {resource.description}
+                        
                       </ListItem>
                     ))}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
-              {/* <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
-                  <NavigationMenuLink className="text-sm font-medium text-muted-foreground hover:text-foreground">
-                    Blog
-                  </NavigationMenuLink>
+              </NavigationMenuList>
+              </NavigationMenu>
+              <Link className="text-sm mt-1 text-slate-600 font-light  hover:text-foreground" href="/#pricing" >
+              Pricing
                 </Link>
-              </NavigationMenuItem> */}
-
-              <NavigationMenuItem>
-                <Link href="/#pricing" legacyBehavior passHref>
-                  <NavigationMenuLink className="text-sm font-medium text-muted-foreground hover:text-foreground">
-                    Pricing
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <Link href="/#Footer" legacyBehavior passHref>
-                  <NavigationMenuLink className="text-sm font-medium text-muted-foreground hover:text-foreground">
+              
+                <Link className="text-sm mt-1 text-slate-600 font-light  hover:text-foreground" href="#Footer" >
                     Contact
-                  </NavigationMenuLink>
                 </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+              
+          
         </div>
 
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" className="hidden md:inline-flex">
+        <div className="flex items-center hover:underline text-sm text-slate-900 space-x-4">
+        <Link href="/pages/login"> 
             Sign In
-          </Button>
+          </Link>
+          <Link href="#pricing">
           <Button className="rounded-full text-sm md:text-base px-3 md:px-4 py-1 md:py-2 bg-gradient-to-r from-blue-600 via-blue-900 to-blue-600">
             Get Started →
           </Button>
+          </Link>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 mr-8" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[400px] p-0">
@@ -227,11 +243,12 @@ export default function Header() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold">Resources</h3>
                     <div className="flex flex-col space-y-2">
+                    {/* hover:text-white bg-gradient-to-r from-blue-600 via-blue-900 to-blue-600 transition-colors p-2 mr-6 */}
                       {resources.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="text-muted-foreground hover:text-foreground transition-colors p-2"
+                          className=""
                           onClick={() => setOpen(false)}
                         >
                           {item.title}
@@ -262,13 +279,15 @@ export default function Header() {
                       About Us
                     </Link>
                   </div>
-                  <div className="flex flex-col  gap-3 mt-4">
+                  <div className="flex flex-col leading-tight font-semibold hover:underline gap-3 mt-4">
                     <Button variant="outline" onClick={() => setOpen(false)}>
-                      Sign In
+                      <p className='font-semibold hover:underline'>Sign In</p>
                     </Button>
-                    <Button className=' bg-gradient-to-r from-blue-600 via-blue-900 to-blue-400' onClick={() => setOpen(false)}>
-                      Get Started →
+                    <Link href="#pricing">
+                    <Button className=' bg-gradient-to-r from-blue-600 via-blue-900 to-blue-400 hover:text-sm' >
+                       Get Started →
                     </Button>
+                    </Link>
                   </div>
                 </nav>
               </div>
@@ -289,7 +308,7 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink asChild>
         <a
           ref={ref}
-          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors  hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
