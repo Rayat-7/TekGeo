@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import EmblaCarousel from './ui/carousel'
 import { EmblaOptionsType } from 'embla-carousel'
-
+// import '../css/base.css'
+// import '../css/sandbox.css'
+// import '../css/embla.css'
 import '../app/globals.css'
 import { motion } from "framer-motion";
 
@@ -22,7 +24,7 @@ const SLIDES = [
 export default function CarouselDemo() { 
   return(
   < >
-    <div id='feature' className='p-10 mt-5 bg-gradient-to-t from-blue-300  to-slate-100'>
+    <div className='p-10 mt-5 bg-gradient-to-t from-blue-300  to-slate-100'>
     {/* <div id="feature" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"> */}
         <div className="lg:text-center mb-16">
           <motion.h2
