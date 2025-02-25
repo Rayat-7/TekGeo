@@ -185,8 +185,8 @@ export default function Header() {
           
         </div>
 
-        <div className="flex items-center hover:underline text-sm text-slate-900 space-x-4">
-        <Link href="/pages/login"> 
+        <div className="flex items-center hover:underline font-semibold  text-sm text-slate-900 space-x-4">
+        <Link className='hidden' href="/pages/login"> 
             Sign In
           </Link>
           <Link href="#pricing">

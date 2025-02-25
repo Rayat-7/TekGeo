@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer  className="bg-gradient-to-r bg-slate-900 text-white py-8">
-      <div id="Footer" className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-3 grid grid-cols-1 md:grid-cols-5 gap-8 items-start border-b-2 ">
+      <div id="Footer" className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-3 grid grid-cols-1 md:grid-cols-5 gap-8 items-start border-slate-500 border-b mb-2">
         {/* Logo */}
         <div className="flex items-center h-44 w-32 justify-center">
           <TekGeoLogo />
@@ -43,27 +43,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact Info */}
-        <div>
-          <h3 className="text-sm font-semibold tracking-wider uppercase">Contact</h3>
-          <ul className="mt-4 text-sm space-y-5">
-            <li>House-56, Road-16, sector-14 Uttara Dhaka 1230,Bangladesh</li>
-            <li className="text-sm flex items-center space-x-2 mt-4">
-              <Mail className="h-4 w-4 " />
-              <span>info@teksoi.com</span>
-            </li>
-          </ul>
-          <div className="flex space-x-4 mt-8">
-            <Link href="#"><Facebook className="h-5 w-5" /></Link>
-            <Link href="#"><Twitter className="h-5 w-5" /></Link>
-            <Link href="#"><Instagram className="h-5 w-5" /></Link>
-            <Link href="#"><Linkedin className="h-5 w-5" /></Link>
-          </div>
-        </div>
+       
 
         {/* Contact Form - Positioned Right */}
         <div className="md:col-span-1 w-full max-w-sm md:ml-auto">
-          <h3 className="text-sm font-semibold text-center mt-2 md:text-left">Get in Touch</h3>
+          <h3 className="text-sm font-semibold text-center  md:text-left">Get in Touch</h3>
           <form onSubmit={handleSubmit} className="mt-4">
             <input
               type="email"
@@ -84,6 +68,23 @@ export default function Footer() {
               Send Message
             </button>
           </form>
+        </div>
+         {/* Contact Info */}
+         <div className="ml-6">
+          <h3 className="text-sm font-semibold tracking-wider uppercase">Contact</h3>
+          <ul className="mt-3 text-sm ">
+            <li>House-56, Road-16, sector-14 Uttara Dhaka 1230,Bangladesh</li>
+            <li className="text-sm flex items-center space-x-2 mt-4">
+              <Mail className="h-4 w-4 " />
+              <span>info@teksoi.com</span>
+            </li>
+          </ul>
+          <div className="flex space-x-4 mt-8">
+            <Link href="#"><Facebook className="h-5 w-5" /></Link>
+            <Link href="#"><Twitter className="h-5 w-5" /></Link>
+            <Link href="#"><Instagram className="h-5 w-5" /></Link>
+            <Link href="#"><Linkedin className="h-5 w-5" /></Link>
+          </div>
         </div>
       </div>
       

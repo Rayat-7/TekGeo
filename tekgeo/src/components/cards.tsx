@@ -25,7 +25,7 @@ const blogs = [
 export function MagicCardDemo() {
   const { theme } = useTheme();
   return (
-    <div className="grid grid-cols-1 gap-6 px-32 p-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 px-32 p-6  lg:grid-cols-3">
       {blogs.map((blog) => (
         <MagicCard
           key={blog.id}
