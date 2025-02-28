@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useEffect} from "react";
 import { useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 import { ChevronFirst } from "@/components/ui/ChevronFirst"
 
 export default function Hero() {
@@ -73,6 +74,9 @@ export default function Hero() {
                             "From workforce tracking to asset management – one solution, endless possibilities."
                         </motion.span> */}
                     </h1>
+                   
+
+                    
                     <motion.p
                         className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
                         initial={{ opacity: 0 }}

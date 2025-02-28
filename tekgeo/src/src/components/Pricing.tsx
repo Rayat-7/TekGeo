@@ -38,7 +38,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <div id="pricing" className="py-16 sm:py-24 relative overflow-hidden">
+    <div id="pricing" className="py-8 sm:py-12 relative overflow-hidden">
       {/* Add background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -75,7 +75,7 @@ export default function Pricing() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl mt-6 font-bold text-foreground sm:text-4xl">Flexible Pricing for Geofencing Solutions</h2>
+          <h2 className="text-3xl  font-bold text-foreground sm:text-4xl">Flexible Pricing for Geofencing Solutions</h2>
           {/* <p className="mt-4 text-xl text-muted-foreground">Choose the plan that fits your geofencing needs</p> */}
         </motion.div>
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
