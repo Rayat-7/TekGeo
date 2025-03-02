@@ -35,17 +35,17 @@ export default function VideoShowcase({
   const isValidVideo = videoId && videoId.trim().length > 5; // Basic check
 
   return (
-    <div id='blog' className="w-full b">
+    <div id='blog' className="w-full px-6  ">
       {/* Title Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center flex-col  items-center px-16 justify-center w-full gap-2"
       >
-        <h2 className="text-3xl p-3 md:text-4xl font-bold mb-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-blue-900 to-blue-400 bg-clip-text text-transparent ">{title}</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl  mx-auto">
+        <h2 className="text-3xl p-3 md:text-4xl font-bold mb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600 via-blue-900 to-blue-400 bg-clip-text text-transparent ">{title}</h2>
+        <p className="text-2xl items-center text-center mb-6 text-black   ">
           {description}
         </p>
       </motion.div>
@@ -131,3 +131,4 @@ export default function VideoShowcase({
     </div>
   );
 }
+

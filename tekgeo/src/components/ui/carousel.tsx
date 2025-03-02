@@ -1,137 +1,62 @@
-"use client"
-import React, { useCallback, useEffect, useRef } from 'react'
+import React from "react";
+import { EmblaOptionsType } from "embla-carousel";
+import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import {
-  EmblaCarouselType,
-  EmblaEventType,
-  EmblaOptionsType
-} from 'embla-carousel'
-import useEmblaCarousel from 'embla-carousel-react'
-import { NextButton ,PrevButton ,usePrevNextButtons } from './EmblaCarouselArrowButtons'
-import { DotButton,useDotButton } from './EmblaCarouselDotButton'
+  PrevButton,
+  NextButton,
+  usePrevNextButtons,
+} from "./EmblaCarouselArrowButtons";
+import useEmblaCarousel from "embla-carousel-react";
 
-const TWEEN_FACTOR_BASE = 0.52
-
-const numberWithinRange = (number: number, min: number, max: number): number =>
-  Math.min(Math.max(number, min), max)
-
-// type PropType = {
-//   slides: number[]
-//   options?: EmblaOptionsType
-// }
 interface SlideData {
-    id: number;
-    title: string;
-    description: string;
-    imageUrl: string;
-  }
-  
-  interface EmblaCarouselProps {
-    slides: SlideData[];
-    options?: EmblaOptionsType;
-  }
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string; // YouTube Embed URL
+}
 
-const EmblaCarousel: React.FC<EmblaCarouselProps> = ({slides,options}) => {
-//   const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options)
-  const tweenFactor = useRef(0)
-  const tweenNodes = useRef<HTMLElement[]>([])
+interface EmblaCarouselProps {
+  slides: SlideData[];
+  options?: EmblaOptionsType;
+}
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi)
+const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   const {
     prevBtnDisabled,
     nextBtnDisabled,
     onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
-
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__number') as HTMLElement
-    })
-  }, [])
-
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
-  }, [])
-
-  const tweenScale = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine()
-      const scrollProgress = emblaApi.scrollProgress()
-      const slidesInView = emblaApi.slidesInView()
-      const isScrollEvent = eventName === 'scroll'
-
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress
-        const slidesInSnap = engine.slideRegistry[snapIndex]
-
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return
-
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target()
-
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target)
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress)
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress)
-                }
-              }
-            })
-          }
-
-          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
-          const scale = numberWithinRange(tweenValue, 0, 1).toString()
-          const tweenNode = tweenNodes.current[slideIndex]
-          tweenNode.style.transform = `scale(${scale})`
-        })
-      })
-    },
-    []
-  )
-
-  useEffect(() => {
-    if (!emblaApi) return
-
-    setTweenNodes(emblaApi)
-    setTweenFactor(emblaApi)
-    tweenScale(emblaApi)
-
-    emblaApi
-      .on('reInit', setTweenNodes)
-      .on('reInit', setTweenFactor)
-      .on('reInit', tweenScale)
-      .on('scroll', tweenScale)
-      .on('slideFocus', tweenScale)
-  }, [emblaApi, tweenScale])
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
 
   return (
-    <div className="embla mt-24">
+    <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((slide) => (
-           
-            <div className="embla__slide " key={slide.id}>
+            <div className="embla__slide" key={slide.id}>
+              <p className="embla__description text-sm items-center justify-center flex pb-4 sm:text-2xl mb-6 font-bold">{slide.description}</p>
               
-               <p className='text-sm items items-center justify-center flex pb-4 sm:text-2xl mb-6 font-semibold'>{slide.description}</p>
-              <div className="embla__slide__number bg-neutral-700 shadow-lg shadow-sky-600 ">
-                
-              <iframe
+              {/* YouTube Embed */}
+              <div className="embla__video-container">
+                {/* <iframe
+                  className="embla__video"
+                  src={`${slide.imageUrl}?rel=0&autoplay=1&mute=1&loop=1`} 
+                  title={slide.title}
+                  // allow="autoplay; encrypted-media"
+                  allowFullScreen
+                /> */}
+                <iframe
                     width="100%"
                     height="100%"
                     src={slide.imageUrl}
-                    className='rounded-xl'
+                    className='rounded-xl embla__video'
                     title="Feature Video"
                     allowFullScreen
                   />
-                  
               </div>
             </div>
           ))}
@@ -149,18 +74,18 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({slides,options}) => {
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : '' 
-              )}
+              className={`embla__dot ${
+                index === selectedIndex ? "embla__dot--selected" : ""
+              }`}
             />
           ))}
         </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default EmblaCarousel
+export default EmblaCarousel;
 
 
 

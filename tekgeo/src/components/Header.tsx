@@ -185,13 +185,10 @@ export default function Header() {
           
         </div>
 
-        <div className="flex items-center hover:underline font-semibold  text-sm text-slate-900 space-x-4">
-        <Link className='hidden' href="/pages/login"> 
-            Sign In
-          </Link>
-          <Link href="#pricing">
+         <div className="flex items-center hover:underline text-sm text-slate-900 space-x-4">
+          <Link href="/pages/login">
           <Button className="rounded-full text-sm md:text-base px-3 md:px-4 py-1 md:py-2 bg-gradient-to-r from-blue-600 via-blue-900 to-blue-600">
-            Get Started →
+          Sign In
           </Button>
           </Link>
           <Sheet open={open} onOpenChange={setOpen}>
@@ -320,7 +317,6 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
-
 
 
 
